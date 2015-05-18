@@ -58,7 +58,7 @@ public class Unit : MonoBehaviour {
 		}
 
 		//if right mouse button is clicked, set the mouse position as the destination for the nav mesh agent.
-		if (selected && Input.GetMouseButtonDown(1) && !building) {
+		if (selected && Input.GetMouseButtonDown(1) && !building && Input.mousePosition.y > 125) {
 			if (moving){
 				nav.SetDestination(transform.position);
 			}

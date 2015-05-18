@@ -40,7 +40,7 @@ public class RTSCamera : MonoBehaviour {
 
 	void OnGUI() {
 		if (startClick != -Vector3.one && selecting) {
-			GUI.color = new Color(1,1,1,0.5f);
+			GUI.color = new Color(1,1,1,0.3f);
 			GUI.DrawTexture(selection, selectionHightlight);
 		}
 	}
@@ -114,7 +114,7 @@ public class RTSCamera : MonoBehaviour {
 
 	void MouseActivity() {
 		//mouse interaction with game objects
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetMouseButtonDown (0) && mousePosY > 125) {
 			LeftMouseClick ();
 		} else if (Input.GetMouseButtonDown (1)) {
 			//RightMouseClick ();

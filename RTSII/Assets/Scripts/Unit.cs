@@ -5,20 +5,18 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour {
 	public int team = 1;
 	public	bool building;
-	public float moveSpeed = 5;
-	public float rotateSpeed = 5;
-	public float deadzone = 5f;
+
+	//test variables
 	public Text testText1;
 	public Text testText2;
 	
 
 	RTSCamera camera;
-	bool selected, moving, rotating;
+	bool selected, moving;
 	Vector3 destination;
-	Quaternion lookRotation;
 	Vector3 invalidPosition;
 	NavMeshAgent nav;
-	Vector3 startPosition;
+	Vector3 startPosition; //<used for off position for group movement
 	Animator anim;
 
 	// Use this for initialization
@@ -32,29 +30,30 @@ public class Unit : MonoBehaviour {
 			nav.updateRotation = true;
 		}
 		anim = GetComponentInChildren<Animator> ();
-
-		lookRotation = transform.rotation;
 	}
 
 	void Update () {
-		if (!building && moving) {
+		//handes movable unit specific things
+		if (!building) {
 			//set animation state
 			anim.SetBool("moving", moving);
 			//sets moving to false if reached target destination
-			if (transform.position == nav.destination) {
+			if (transform.position == destination) {
 				moving = false;
 			}
-			//turns slowly until facing is within tolerance of desired facing
-			Vector3 targetDir = new Vector3(nav.steeringTarget.x, transform.position.y, nav.steeringTarget.z) - transform.position;
-			float angle = Vector3.Angle (targetDir, transform.forward);
-			if (angle < 5.0f) {
-				nav.speed = 5f;
-			} else if (angle < 45.0f) {
-				nav.speed = 3.5f;
-			} else if (angle > 150) {
-				nav.speed = 0.5f;
-			} else {
-				nav.speed = 2;
+			if (moving) {
+				//turns slowly until facing is within tolerance of desired facing
+				Vector3 targetDir = new Vector3(nav.steeringTarget.x, transform.position.y, nav.steeringTarget.z) - transform.position;
+				float angle = Vector3.Angle (targetDir, transform.forward);
+				if (angle < 5.0f) {
+					nav.speed = 5f;
+				} else if (angle < 45.0f) {
+					nav.speed = 3.5f;
+				} else if (angle > 150) {
+					nav.speed = 0.5f;
+				} else {
+					nav.speed = 2;
+				}
 			}
 		}
 
@@ -67,14 +66,14 @@ public class Unit : MonoBehaviour {
 			Vector3 hitPoint = FindHitPoint();
 			if (hitPoint != null) {
 				float x = hitPoint.x;
-				float y = hitPoint.y;// + transform.position.y;
+				float y = hitPoint.y;
 				float z = hitPoint.z;
 				destination = new Vector3 (x, y ,z) + startPosition;
 				MakeMove ();
 			}
 		}
 
-		//If the unit is within the selection drag box when the left mouse button is released
+		//If the unit is within the selection drag box when the left mouse button is released then select the unit
 		if (GetComponentInChildren<Renderer>().isVisible && Input.GetMouseButtonUp (0) && RTSCamera.selecting) {
 			Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
 			camPos.y = RTSCamera.InvertMouseY(camPos.y);
@@ -89,7 +88,7 @@ public class Unit : MonoBehaviour {
 			}
 		}
 
-		//deselects the unit if the left mouse button is clicked, can be reselected in the same click
+		//unselects the unit if the left mouse button is clicked, can be reselected in the same click
 		if (Input.GetMouseButtonDown (0) && selected ) {
 			GameObject hitObject = FindHitObject();
 			if (hitObject != transform.gameObject) {
@@ -120,14 +119,13 @@ public class Unit : MonoBehaviour {
 	 * Sets the unit to selected if it isnt or unselects it if it is already selected
 	 */ 
 	public void setSelected() {
+		//controls the opacity of the selection box indicator
 		SpriteRenderer selectionBox = transform.Find("SelectionBox").gameObject.GetComponent<SpriteRenderer>();
 		Color color = selectionBox.color;
 		if (selected) {
-			Debug.Log("Unit: setSelected: UNselecting " + transform.gameObject.name, transform.gameObject);
 			selected = false;
 			color.a = 0;
 		} else {
-			Debug.Log("Unit: setSelected: selecting " + transform.gameObject.name, transform.gameObject);
 			selected = true;
 			color.a = 255;
 			camera.addSelected(transform.gameObject);
@@ -138,10 +136,6 @@ public class Unit : MonoBehaviour {
 	//sets the nav mesh agent destination and sets moving to true.
 	void MakeMove() {
 		nav.SetDestination (destination);
-		Debug.Log ("Unit: MakeMove: nav.sterringTarget = " + nav.steeringTarget.ToString (), transform.gameObject);
-		Debug.Log ("Unit: MakeMove: transform.rotation = " + transform.rotation.ToString (), transform.gameObject);
-		testText1.text = "transform rotation: " + transform.rotation.ToString();
-		testText2.text = "nav steering target lookRotation: " + Quaternion.LookRotation(nav.steeringTarget, Vector3.up); //new Vector3(nav.steeringTarget.x, transform.position.y, nav.steeringTarget.z)
 		moving = true;
 	} 
 

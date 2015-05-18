@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class RTSCamera : MonoBehaviour {
-	public Vector3 aPosition = new Vector3(0,0,0);
 	public int scrollDistance = 10;
 	public float zoomMin = 15f;
 	public float zoomMax = 100f;
@@ -13,10 +12,11 @@ public class RTSCamera : MonoBehaviour {
 	public float mousePosX;
 	public float mousePosY;
 
-	public Text testText;
+	//test variables
+	public Text testText; //<displays the number of selected units
 
 	float scrollAmount;
-	float x;
+	float x; 
 	float z;
 	float scrollSpeed; 
 	Vector3 invalidPosition;
@@ -138,25 +138,22 @@ public class RTSCamera : MonoBehaviour {
 	 * Left mouse button is used to select units
 	 */
 	void LeftMouseClick() {
-		GameObject hitObject = FindHitObject();
+		//clear array of selected objects
 		for (int i = 0; i <= selectedIndex; i++) {
 			selectedObjects[i] = null;
 		}
 		selectedIndex = 0;
-		//Debug.Log ("RTSCamera: LeftMouseClick: hitObject = " + hitObject.name, hitObject);
+
+		//determine what was clicked on
+		GameObject hitObject = FindHitObject();
 		Vector3 hitPoint = FindHitPoint();
-		Debug.Log ("RTSCamera: LeftMouseClick: hitPoint = " + hitPoint.ToString (), hitObject);
 		if (hitObject && hitPoint != invalidPosition) {
-			Unit unit = hitObject.GetComponentInParent<Unit>();
-			if (unit && unit.team == 1) {
-				Debug.Log ("RTSCamera: LeftMouseClick: unit script found and team = 1", hitObject);
+			Unit unit = hitObject.GetComponentInParent<Unit>(); 
+			if (unit && unit.team == 1) { //<if clicked on unit -> select the unit
 				unit.setSelected();
-			} else if (hitObject.name == "Terrain") {
-				Debug.Log ("RTSCamera: LeftMouseClick: hitobject is the terrain", hitObject);
+			} else if (hitObject.name == "Terrain") { //<if clicked on terrain -> begin drawing selection box
 				startClick = Input.mousePosition;
 				selecting = true;
-			}else {
-				Debug.Log ("RTSCamera: LeftMouseClick: unit script NOT found or team != 1", hitObject);
 			}
 		}
 	}
@@ -177,6 +174,9 @@ public class RTSCamera : MonoBehaviour {
 		return invalidPosition;
 	}
 
+	/*
+	 * Resets the drag selection box, the units themselves handle selection
+	 */ 
 	void DragBox(){
 		selecting = false;
 		startClick = -Vector3.one;

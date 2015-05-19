@@ -182,7 +182,7 @@ RectTransform:
   - {fileID: 1763250024}
   - {fileID: 597098837}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -363,7 +363,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 4
 --- !u!1001 &396839912
 Prefab:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 99.0899963
+      value: 94.9300003
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -381,27 +381,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 136.080002
+      value: 140.240005
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -2.12866127e-07
+      value: -1.3922805e-07
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.923879504
+      value: -.60427618
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -8.81720368e-08
+      value: -1.83580639e-07
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .382683456
+      value: .796774924
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: testText1
@@ -545,7 +545,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 5
 --- !u!1 &597098836
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,10 +572,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1066363389}
-  - {fileID: 689923152}
-  - {fileID: 1297865212}
+  m_Children: []
   m_Father: {fileID: 176921893}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
@@ -610,121 +607,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 597098836}
---- !u!1 &689923151
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 689923152}
-  - 222: {fileID: 689923154}
-  - 114: {fileID: 689923153}
-  m_Layer: 5
-  m_Name: RhinoImage 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &689923152
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 689923151}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 597098837}
-  m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5, y: 45}
-  m_SizeDelta: {x: 35, y: 35}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &689923153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 689923151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: ea40d6cf9cce9fd4bb619be0ba56cce6, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &689923154
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 689923151}
---- !u!1001 &715192393
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 106.349998
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 12.0200005
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 134.339996
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -2.12866127e-07
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -.923879504
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -8.81720368e-08
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .382683456
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText1
-      value: 
-      objectReference: {fileID: 1624512064}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText2
-      value: 
-      objectReference: {fileID: 1682460870}
-    - target: {fileID: 144932, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_Name
-      value: Arty Truck 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &838043269
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 7
 --- !u!1 &894095799
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,236 +742,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 894095799}
   m_Mesh: {fileID: 4300002, guid: 6c477d0093e954f47a2f30227c24c30f, type: 3}
---- !u!1 &1066363388
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1066363389}
-  - 222: {fileID: 1066363391}
-  - 114: {fileID: 1066363390}
-  m_Layer: 5
-  m_Name: RhinoImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1066363389
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1066363388}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 597098837}
-  m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5, y: 85}
-  m_SizeDelta: {x: 35, y: 35}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &1066363390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1066363388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: ea40d6cf9cce9fd4bb619be0ba56cce6, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1066363391
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1066363388}
---- !u!1001 &1114713987
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 103.589996
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 12.0200005
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 131.580002
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -2.12866127e-07
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -.923879504
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -8.81720368e-08
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .382683456
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText1
-      value: 
-      objectReference: {fileID: 1624512064}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText2
-      value: 
-      objectReference: {fileID: 1682460870}
-    - target: {fileID: 144932, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_Name
-      value: Arty Truck 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1160428628
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 104.769997
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 12.0200005
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 141.899994
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -2.12866127e-07
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -.923879504
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -8.81720368e-08
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .382683456
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText1
-      value: 
-      objectReference: {fileID: 1624512064}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText2
-      value: 
-      objectReference: {fileID: 1682460870}
-    - target: {fileID: 144932, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_Name
-      value: Arty Truck 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-  m_IsPrefabParent: 0
---- !u!1 &1297865211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1297865212}
-  - 222: {fileID: 1297865214}
-  - 114: {fileID: 1297865213}
-  m_Layer: 5
-  m_Name: RhinoImage 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1297865212
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1297865211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 597098837}
-  m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5, y: 5}
-  m_SizeDelta: {x: 35, y: 35}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &1297865213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1297865211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: ea40d6cf9cce9fd4bb619be0ba56cce6, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1297865214
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1297865211}
 --- !u!1 &1429841645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,114 +870,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1624512063}
---- !u!1001 &1634131665
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 101.709999
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 12.0200005
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 138.839996
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -2.12866127e-07
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -.923879504
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -8.81720368e-08
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .382683456
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText1
-      value: 
-      objectReference: {fileID: 1624512064}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText2
-      value: 
-      objectReference: {fileID: 1682460870}
-    - target: {fileID: 144932, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_Name
-      value: Arty Truck 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1649142814
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 109.339996
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 12.0200005
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 137.330002
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -2.12866127e-07
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -.923879504
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -8.81720368e-08
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .382683456
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText1
-      value: 
-      objectReference: {fileID: 1624512064}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText2
-      value: 
-      objectReference: {fileID: 1682460870}
-    - target: {fileID: 144932, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_Name
-      value: Arty Truck 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1682460869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,6 +949,7 @@ GameObject:
   - 124: {fileID: 1727891219}
   - 81: {fileID: 1727891218}
   - 114: {fileID: 1727891217}
+  - 114: {fileID: 1727891223}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1494,61 +1039,21 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
---- !u!1001 &1752793650
-Prefab:
+  m_RootOrder: 3
+--- !u!114 &1727891223
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 106.980003
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 12.0200005
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 139.690002
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -2.12866127e-07
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -.923879504
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -8.81720368e-08
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: .382683456
-      objectReference: {fileID: 0}
-    - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText1
-      value: 
-      objectReference: {fileID: 1624512064}
-    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: testText2
-      value: 
-      objectReference: {fileID: 1682460870}
-    - target: {fileID: 144932, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-      propertyPath: m_Name
-      value: Arty Truck 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
-  m_IsPrefabParent: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727891216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292e5b95c8dc4c24f87f05cba7748c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitPanel: {fileID: 597098836}
+  RhinoSelectedButton: {fileID: 11414130, guid: e3572251b0f524f458df96410f198e68,
+    type: 2}
 --- !u!1 &1763250023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,7 +1156,7 @@ Transform:
   - {fileID: 405888969}
   - {fileID: 2016329839}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 2
 --- !u!23 &1839246907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1688,7 +1193,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
+  hp: 100
+  cost: 100
   building: 1
+  flying: 0
+  name: Rhino
+  enemyMat: {fileID: 0}
+  targetSearchTime: 1
+  range: 25
+  reloadTime: 1.5
+  RhinoShot: {fileID: 0}
   testText1: {fileID: 1624512064}
   testText2: {fileID: 1682460870}
 --- !u!136 &1839246909
@@ -1776,7 +1290,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3bc8bc9ad6cb9284cb196bd6ee35921d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
---- !u!1001 &2037791409
+--- !u!1001 &2109332839
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1785,35 +1299,35 @@ Prefab:
     m_Modifications:
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 101.220001
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.0200005
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 133.949997
+      value: 194.399994
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -2.12866127e-07
+      value: -1.3922805e-07
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.923879504
+      value: -.60427618
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -8.81720368e-08
+      value: -1.83580639e-07
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .382683456
+      value: .796774924
       objectReference: {fileID: 0}
     - target: {fileID: 486256, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: testText1
@@ -1826,6 +1340,14 @@ Prefab:
     - target: {fileID: 144932, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
       propertyPath: m_Name
       value: Arty Truck 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11466206, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
+      propertyPath: team
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 144932, guid: bc9168242d5515d469dc000978fce5b3, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc9168242d5515d469dc000978fce5b3, type: 2}

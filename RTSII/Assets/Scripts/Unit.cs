@@ -4,7 +4,16 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour {
 	public int team = 1;
+	public int hp = 100;
+	public int cost = 100;
 	public	bool building;
+	public bool flying;
+	public string name = "Rhino";
+	public Material enemyMat;
+	public float targetSearchTime = 1.0f; //<how frequently to search for target, in seconds
+	public int range = 25;
+	public float reloadTime = 1.5f;
+	public GameObject RhinoShot;
 
 	//test variables
 	public Text testText1;
@@ -18,6 +27,10 @@ public class Unit : MonoBehaviour {
 	NavMeshAgent nav;
 	Vector3 startPosition; //<used for off position for group movement
 	Animator anim;
+	float targetSearchTimer;
+	Transform target;
+	float rangeToTarget;
+	float reloadTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -30,9 +43,66 @@ public class Unit : MonoBehaviour {
 			nav.updateRotation = true;
 		}
 		anim = GetComponentInChildren<Animator> ();
+		if (team == 2) {
+			gameObject.GetComponentInChildren<Renderer>().material = enemyMat;
+			gameObject.tag = "Enemy";
+		}
+		targetSearchTimer = 0f;
+		target = null; //<null if there is no target in range
+		reloadTimer = 0f;
 	}
 
 	void Update () {
+		//target things
+		targetSearchTimer += Time.deltaTime;
+		reloadTimer += Time.deltaTime;
+		if (target && team != 2) {
+			rangeToTarget = (target.position - transform.position).magnitude;
+			if (rangeToTarget < range) {
+				nav.enabled =false;
+				Vector3 targetDir = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
+				float angle = Vector3.Angle (targetDir, transform.forward);
+				if (angle < 3 && reloadTimer > reloadTime) {
+					//fire 
+					Transform fireLocation = transform.Find ("medium 1").Find ("mediumvehicle_gun").Find ("gun_fx_mount");
+					GameObject shot = (GameObject)Instantiate(RhinoShot, fireLocation.position, fireLocation.rotation);
+					shot.GetComponent<RhinoShotScript>().team = team;
+					reloadTimer = 0f;
+				}
+				else {
+					//turn toward target
+					Quaternion lookAtRotation = Quaternion.LookRotation(new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position);
+					// Will assume you mean to divide by damping meanings it will take damping seconds to face target assuming it doesn't move
+					transform.rotation = Quaternion.Slerp(transform.rotation, lookAtRotation, Time.deltaTime/1.0f);
+				}
+			} else {
+				nav.enabled = true;
+			}
+		}
+		//find targets in range
+		//only looks for target every second if it does not already have a target in range.
+		if (targetSearchTimer > targetSearchTime && team == 1 && !building && rangeToTarget < range) {
+			targetSearchTimer = 0f;
+			GameObject[] targets = GameObject.FindGameObjectsWithTag ("Enemy");
+			int minRangeIndex = -1;
+			float minRange = Mathf.Infinity;
+			for (int i = 0; i < targets.Length; i++) {
+				float targetRange = (targets [i].GetComponent<Transform> ().position - transform.position).magnitude;
+				if (targetRange < minRange){
+					minRange = targetRange;
+					minRangeIndex = i;
+				}
+			}
+			if (minRange < range) {
+				target = targets[minRangeIndex].GetComponent<Transform>();
+			}
+			else { //<There is no target in range
+				target = null;
+			}
+		}
+
+
+
 		//handes movable unit specific things
 		if (!building) {
 			//set animation state
@@ -51,14 +121,13 @@ public class Unit : MonoBehaviour {
 					nav.speed = 3.5f;
 				} else if (angle > 150) {
 					nav.speed = 0.5f;
-				} else {
-					nav.speed = 2;
+				} else {					nav.speed = 2;
 				}
 			}
 		}
 
 		//if right mouse button is clicked, set the mouse position as the destination for the nav mesh agent.
-		if (selected && Input.GetMouseButtonDown(1) && !building && Input.mousePosition.y > 125) {
+		if (selected && Input.GetMouseButtonDown(1) && !building && Input.mousePosition.y > RTSCamera.mouseYLowerBound && team == 1) {
 			if (moving){
 				nav.SetDestination(transform.position);
 			}
@@ -74,7 +143,7 @@ public class Unit : MonoBehaviour {
 		}
 
 		//If the unit is within the selection drag box when the left mouse button is released then select the unit
-		if (GetComponentInChildren<Renderer>().isVisible && Input.GetMouseButtonUp (0) && RTSCamera.selecting) {
+		if (GetComponentInChildren<Renderer>().isVisible && Input.GetMouseButtonUp (0) && RTSCamera.selecting && team == 1) {
 			Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
 			camPos.y = RTSCamera.InvertMouseY(camPos.y);
 			bool s;
@@ -89,7 +158,7 @@ public class Unit : MonoBehaviour {
 		}
 
 		//unselects the unit if the left mouse button is clicked, can be reselected in the same click
-		if (Input.GetMouseButtonDown (0) && selected ) {
+		if (Input.GetMouseButtonDown (0) && selected && team == 1) {
 			GameObject hitObject = FindHitObject();
 			if (hitObject != transform.gameObject) {
 				setSelected();
@@ -130,7 +199,9 @@ public class Unit : MonoBehaviour {
 			color.a = 255;
 			camera.addSelected(transform.gameObject);
 		}
-		selectionBox.color = color;
+		if (team == 1) {
+			selectionBox.color = color;
+		}
 	}
 
 	//sets the nav mesh agent destination and sets moving to true.

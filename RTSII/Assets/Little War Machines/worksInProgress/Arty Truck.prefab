@@ -252,8 +252,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120718}
-  m_LocalRotation: {x: 1.01657506e-15, y: 1, z: -2.18556941e-08, w: 4.37113883e-08}
-  m_LocalPosition: {x: .00342594879, y: .489655852, z: .23015596}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  m_LocalPosition: {x: 0, y: .489655823, z: .211296871}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 402660}
@@ -291,8 +291,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144932}
-  m_LocalRotation: {x: -2.12866127e-07, y: -.923879504, z: -8.81720368e-08, w: .382683456}
-  m_LocalPosition: {x: 99.0899963, y: 12.0200005, z: 136.080002}
+  m_LocalRotation: {x: -1.3922805e-07, y: -.60427618, z: -1.83580639e-07, w: .796774924}
+  m_LocalPosition: {x: 94.9300003, y: 12.0200005, z: 140.240005}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 446730}
@@ -578,6 +578,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 1
   building: 0
+  flying: 0
+  name: Rhino
+  enemyMat: {fileID: 2100000, guid: 2db7d59f2bb538a4e9a35f0583b29e0f, type: 2}
+  targetSearchTime: 1
+  range: 25
+  reloadTime: 1.5
+  RhinoShot: {fileID: 198616, guid: 708c60052ffc5d241a338803cdb36150, type: 2}
   testText1: {fileID: 0}
   testText2: {fileID: 0}
 --- !u!195 &19572974

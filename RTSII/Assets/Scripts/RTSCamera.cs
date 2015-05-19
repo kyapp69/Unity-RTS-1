@@ -11,6 +11,7 @@ public class RTSCamera : MonoBehaviour {
 	public static bool selecting;
 	public float mousePosX;
 	public float mousePosY;
+	public static int mouseYLowerBound = 125;
 
 	//test variables
 	public Text testText; //<displays the number of selected units
@@ -114,7 +115,7 @@ public class RTSCamera : MonoBehaviour {
 
 	void MouseActivity() {
 		//mouse interaction with game objects
-		if (Input.GetMouseButtonDown (0) && mousePosY > 125) {
+		if (Input.GetMouseButtonDown (0) && mousePosY > mouseYLowerBound) {
 			LeftMouseClick ();
 		} else if (Input.GetMouseButtonDown (1)) {
 			//RightMouseClick ();
@@ -207,6 +208,20 @@ public class RTSCamera : MonoBehaviour {
 			}
 		}
 		return total / (totalMovable);
+	}
+
+	public int GetNumRhinosSelected() {
+		Debug.Log ("RTSCamer: GetNumRhinos: selectedIndex: " + selectedIndex, Camera.main);
+		int total = 0;
+		for (int i = 0; i < selectedIndex; i++) {
+			if (selectedObjects [i].GetComponent<Unit> ().name == "Rhino") {
+				total++;
+			} else {
+				Debug.Log ("RTSCamer: GetNumRhinos: name = " + selectedObjects [i].GetComponent<Unit> ().name ,Camera.main);
+			}
+		}
+		Debug.Log ("RTSCamer: GetNumRhinos: total = " + total, Camera.main);
+		return total;
 	}
 
 }

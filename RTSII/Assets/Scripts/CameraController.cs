@@ -2,6 +2,7 @@
 using System.Collections;
 
 /*
+ * 2nd Generation
  * This script controls that main camera to act like an RTS camera with edge scolling, 
  * zoom, and rotation. Scroll speed is not constant and is based on the zoom, but the 
  * multiplier is adjustable.
@@ -13,18 +14,38 @@ public class CameraController : MonoBehaviour {
 	public float zoomMax = 50f;
 	public float scrollMult = 3;
 	public float zoomMult = 0.1f;
-	
+
+	bool verticalRotationEnabled = true;
+	float verticalRotationMin = 25f; // <in degrees
+	float verticalRotationMax = 65f; // < in degrees
+	float mouseX;
+	float mouseY;
+
+	void Start() {
+		GetMousePosition ();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		MoveCamera ();
 		ZoomCamera ();
+		RotateCamera ();
+	}
+
+	void LateUpdate() {
+		GetMousePosition ();
+	}
+
+	void GetMousePosition() {
+		// Get the mouse position - needed by MoveCamera() and RotateCamer()
+		mouseX = Input.mousePosition.x;
+		mouseY = Input.mousePosition.y;
 	}
 
 	// Moves the camera with either the mouse or wasd
 	void MoveCamera() {
 		float scrollSpeed = scrollMult * Camera.main.fieldOfView;
 		// get the mouse and camera positions
-		Vector3 mousePos = Input.mousePosition;
 		float x = transform.position.x;
 		float z = transform.position.z;
 
@@ -33,37 +54,19 @@ public class CameraController : MonoBehaviour {
 
 		// mouse movement
 		// mouse left
-		if (mousePos.x < scrollDistance && x > -0) {
+		if ((mouseX < scrollDistance || Input.GetKey("a")) && x > -0) {
 			transform.Translate(-scrollAmount, 0, 0, Space.World);
 		}
 		// mouse right
-		if (mousePos.x >= Screen.width - scrollDistance && x < 480) {
+		if ((mouseX >= Screen.width - scrollDistance || Input.GetKey ("d")) && x < 480) {
 			transform.Translate(scrollAmount, 0,0, Space.World);
 		}
 		// mouse down
-		if (mousePos.y < scrollDistance && z > -0) {
+		if ((mouseY < scrollDistance || Input.GetKey("s")) && z > -0) {
 			transform.Translate(0,0, -scrollAmount, Space.World);
 		}
 		// mouse up
-		if (mousePos.y >= Screen.height - scrollDistance && z < 480) {
-			transform.Translate(0,0,scrollAmount, Space.World);
-		}
-		
-		// key movement
-		// a-left
-		if (Input.GetKey("a") && x > -0) {
-			transform.Translate(-scrollAmount, 0, 0, Space.World);
-		}
-		// d-right
-		if (Input.GetKey ("d") && x < 480) {
-			transform.Translate(scrollAmount, 0,0, Space.World);
-		}
-		// s-down
-		if (Input.GetKey("s") && z > -0) {
-			transform.Translate(0,0, -scrollAmount, Space.World);
-		}
-		// w-up
-		if (Input.GetKey("w") && z < 480) {
+		if ((mouseY >= Screen.height - scrollDistance || Input.GetKey("w")) && z < 480) {
 			transform.Translate(0,0,scrollAmount, Space.World);
 		}
 	}
@@ -81,5 +84,28 @@ public class CameraController : MonoBehaviour {
 		// clamp the zoom between the min and max values
 		Camera.main.fieldOfView = Mathf.Clamp (Camera.main.fieldOfView, zoomMin, zoomMax);
 
+	}
+
+	// hold down left ctrl and right mouse button and drag mouse to rotate
+	void RotateCamera() {
+		float easeFactor = 10f;
+		if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButton(1)) {
+			// Horizontal Rotation - Rotate camera if mouse x position has changed
+			if (Input.mousePosition.x != mouseX) {
+				float cameraRotationY = (Input.mousePosition.x - mouseX) * easeFactor * Time.deltaTime;
+				transform.Rotate(0, cameraRotationY, 0);
+			}
+
+			// Vertical Rotation - Rotate camer if mouse y position has changed
+			if (verticalRotationEnabled && Input.mousePosition.y != mouseY) {
+				Transform camera = Camera.main.GetComponent<Transform>();
+				float cameraRotationX = (mouseY - Input.mousePosition.y) * easeFactor * Time.deltaTime;
+				float desiredRotationX = camera.eulerAngles.x + cameraRotationX;
+
+				if (desiredRotationX >= verticalRotationMin && desiredRotationX <= verticalRotationMax) {
+					camera.Rotate(cameraRotationX, 0, 0);
+				}
+			}
+		}
 	}
 }

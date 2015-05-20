@@ -31,11 +31,19 @@ public class Unit : MonoBehaviour {
 	Transform target;
 	float rangeToTarget;
 	float reloadTimer;
+	Transform fireLocation;
+	Transform gun;
+	Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
 		selected = false;
 		camera = GameObject.Find ("Main Camera").GetComponent<RTSCamera>();
+		rb = GetComponent<Rigidbody> ();
+		if (name == "Rhino") {
+			fireLocation = transform.Find ("medium 1").Find ("mediumvehicle_gun").Find("gunmount").Find ("gun_fx_mount");
+			gun = transform.Find ("medium 1").Find ("mediumvehicle_gun").Find("gunmount");
+		}
 		moving = false;
 		invalidPosition = new Vector3(-99999,-99999,-99999);
 		if (!building) {
@@ -60,20 +68,26 @@ public class Unit : MonoBehaviour {
 			rangeToTarget = (target.position - transform.position).magnitude;
 			if (rangeToTarget < range) {
 				nav.enabled =false;
-				Vector3 targetDir = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
-				float angle = Vector3.Angle (targetDir, transform.forward);
-				if (angle < 3 && reloadTimer > reloadTime) {
+				Vector3 targetDirHor = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
+				float angleHor = Vector3.Angle (targetDirHor, transform.forward);
+				Vector3 targetDirVert = target.position - gun.position;
+				float angleVert = Vector3.Angle (targetDirVert, gun.forward);
+				if (angleHor < 30 && angleVert < 30 && reloadTimer > reloadTime) {
+					moving = false;
 					//fire 
-					Transform fireLocation = transform.Find ("medium 1").Find ("mediumvehicle_gun").Find ("gun_fx_mount");
-					GameObject shot = (GameObject)Instantiate(RhinoShot, fireLocation.position, fireLocation.rotation);
+					GameObject shot = (GameObject)Instantiate(RhinoShot, fireLocation.position, gun.rotation);
 					shot.GetComponent<RhinoShotScript>().team = team;
 					reloadTimer = 0f;
 				}
-				else {
+				if (angleHor > 1) {
 					//turn toward target
 					Quaternion lookAtRotation = Quaternion.LookRotation(new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position);
 					// Will assume you mean to divide by damping meanings it will take damping seconds to face target assuming it doesn't move
 					transform.rotation = Quaternion.Slerp(transform.rotation, lookAtRotation, Time.deltaTime/1.0f);
+				}
+				if (angleVert > 1) {
+					Quaternion lookAtRotation = Quaternion.LookRotation(target.position - gun.position);
+					gun.rotation = Quaternion.Slerp(gun.rotation, lookAtRotation, Time.deltaTime/1.0f);
 				}
 			} else {
 				nav.enabled = true;
@@ -128,7 +142,7 @@ public class Unit : MonoBehaviour {
 
 		//if right mouse button is clicked, set the mouse position as the destination for the nav mesh agent.
 		if (selected && Input.GetMouseButtonDown(1) && !building && Input.mousePosition.y > RTSCamera.mouseYLowerBound && team == 1) {
-			if (moving){
+			if (moving && nav.enabled == true){
 				nav.SetDestination(transform.position);
 			}
 			startPosition = transform.position - camera.GetGroupCenter();
@@ -206,8 +220,10 @@ public class Unit : MonoBehaviour {
 
 	//sets the nav mesh agent destination and sets moving to true.
 	void MakeMove() {
-		nav.SetDestination (destination);
-		moving = true;
+		if (nav.enabled == true) {
+			nav.SetDestination (destination);
+			moving = true;
+		}
 	} 
 
 	public bool IsMoving() {
@@ -220,5 +236,21 @@ public class Unit : MonoBehaviour {
 
 	public bool IsBuilding() {
 		return building;
+	}
+
+	public Transform GetTarget() {
+		return target;
+	}
+
+	public void Damage(int amount) {
+		Debug.Log ("Unit: Damage: amount: " + amount, this.gameObject);
+		hp -= amount;
+		if (hp <= 0) {
+			Destroy (this.gameObject);
+		}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		Debug.Log ("Unit: OnTriggerEnter", this.gameObject);
 	}
 }

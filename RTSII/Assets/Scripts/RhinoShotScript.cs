@@ -23,12 +23,12 @@ public class RhinoShotScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Unit hitUnit = other.gameObject.GetComponent<Unit> ();
-		if (hitUnit && hitUnit.team != team) {
-			hitUnit.Damage (damage);
-		}
-		if ((transform.position - startPosition).magnitude > 3) {
-			Destroy (this.gameObject);
-		}
+	//	Unit hitUnit = other.gameObject.GetComponent<Unit> ();
+		//if (hitUnit && hitUnit.team != team) {
+		//	hitUnit.Damage (damage);
+		//}
+//		if ((transform.position - startPosition).magnitude > 3) {
+			//Destroy (this.gameObject);
+		//}
 	}
 }

@@ -53,21 +53,23 @@ public class CameraController : MonoBehaviour {
 		float scrollAmount = scrollSpeed * Time.deltaTime;
 
 		// mouse movement
-		// mouse left
-		if ((mouseX < scrollDistance || Input.GetKey("a")) && x > -0) {
-			transform.Translate(-scrollAmount, 0, 0, Space.World);
-		}
-		// mouse right
-		if ((mouseX >= Screen.width - scrollDistance || Input.GetKey ("d")) && x < 480) {
-			transform.Translate(scrollAmount, 0,0, Space.World);
-		}
-		// mouse down
-		if ((mouseY < scrollDistance || Input.GetKey("s")) && z > -0) {
-			transform.Translate(0,0, -scrollAmount, Space.World);
-		}
-		// mouse up
-		if ((mouseY >= Screen.height - scrollDistance || Input.GetKey("w")) && z < 480) {
-			transform.Translate(0,0,scrollAmount, Space.World);
+		if (!Input.GetKey(KeyCode.LeftControl)) {
+			// mouse left
+			if ((mouseX < scrollDistance || Input.GetKey(KeyCode.A)) && x > -0) {
+				transform.Translate(-scrollAmount, 0, 0);
+			}
+			// mouse right
+			if ((mouseX >= Screen.width - scrollDistance || Input.GetKey (KeyCode.D)) && x < 480) {
+				transform.Translate(scrollAmount, 0,0);
+			}
+			// mouse down
+			if ((mouseY < scrollDistance || Input.GetKey(KeyCode.S)) && z > -0) {
+				transform.Translate(0,0, -scrollAmount);
+			}
+			// mouse up
+			if ((mouseY >= Screen.height - scrollDistance || Input.GetKey(KeyCode.W)) && z < 480) {
+				transform.Translate(0,0,scrollAmount);
+			}
 		}
 	}
 

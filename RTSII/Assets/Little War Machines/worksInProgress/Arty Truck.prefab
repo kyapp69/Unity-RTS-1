@@ -24,7 +24,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 468328}
   - 111: {fileID: 11189790}
-  - 65: {fileID: 6575664}
   - 23: {fileID: 2394342}
   - 114: {fileID: 11475280}
   - 95: {fileID: 9515212}
@@ -127,9 +126,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 495688}
-  - 114: {fileID: 11430150}
   - 195: {fileID: 19528074}
   - 54: {fileID: 5432582}
+  - 114: {fileID: 11424190}
+  - 65: {fileID: 6505226}
   m_Layer: 0
   m_Name: Arty Truck
   m_TagString: Untagged
@@ -321,7 +321,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163242}
   m_LocalRotation: {x: -1.3922805e-07, y: -.60427618, z: -1.83580639e-07, w: .796774924}
-  m_LocalPosition: {x: 94.9300003, y: 12.0200005, z: 140.240005}
+  m_LocalPosition: {x: 37.4430809, y: 12.0174141, z: 163.572205}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 494728}
@@ -553,12 +553,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6575664
+--- !u!65 &6505226
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106274}
+  m_GameObject: {fileID: 163242}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -598,7 +598,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &11430150
+--- !u!114 &11424190
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -606,22 +606,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 163242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fab1db1cc8fdf14194c48cd1aa9ded6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3cb80e12b3612774387376ca8a1a7710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
-  hp: 100
-  cost: 100
-  building: 0
+  uName: 
+  maxHitPoints: 0
+  cost: 0
+  moveSpeed: 0
+  turnSpeed: 0
   flying: 0
-  name: Rhino
-  enemyMat: {fileID: 2100000, guid: 2db7d59f2bb538a4e9a35f0583b29e0f, type: 2}
-  targetSearchTime: 1
-  range: 25
-  reloadTime: 1.5
-  RhinoShot: {fileID: 198616, guid: 708c60052ffc5d241a338803cdb36150, type: 2}
-  testText1: {fileID: 0}
-  testText2: {fileID: 0}
 --- !u!114 &11475280
 MonoBehaviour:
   m_ObjectHideFlags: 1

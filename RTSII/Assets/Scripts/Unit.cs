@@ -5,6 +5,7 @@ public class Unit : Selectable {
 	public float moveSpeed;
 	public float turnSpeed;
 	public bool flying;
+	public float flyingHeight = 25f;
 
 	bool moving;
 	NavMeshAgent nav;
@@ -22,6 +23,10 @@ public class Unit : Selectable {
 	}
 
 	public void SetDestination(Vector3 destination) {
-
+		if (flying) {
+			nav.SetDestination(new Vector3(destination.x, destination.y + flyingHeight, destination.z));
+		} else {
+			nav.SetDestination(destination);
+		}
 	}
 }

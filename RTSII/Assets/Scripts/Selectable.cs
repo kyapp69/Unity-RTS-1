@@ -49,6 +49,7 @@ public class Selectable : MonoBehaviour {
 			Color color = selectionBox.color;
 			if (selected) {
 				Debug.Log("Selectable: SetSelected: selecting: " + uName, this.gameObject);
+				SelectorScript.AddSelected(this.gameObject);
 				color.a = 255;
 			} else {
 				color.a = 0;

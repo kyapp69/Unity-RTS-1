@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Rhino : Unit {
-
+public class Gunship : Unit {
 
 	// Use this for initialization
 	protected override void Start () {
-		uName = "Rhino";
-		flying = false;
-		maxHitPoints = 100;
-		cost = 150;
-		moveSpeed = 5f;
+		uName = "Gunship";
+		flying = true;
+		maxHitPoints = 75;
+		cost = 175;
+		moveSpeed = 7f;
 		base.Start ();
 	}
 	

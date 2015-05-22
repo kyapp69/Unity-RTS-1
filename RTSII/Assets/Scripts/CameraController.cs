@@ -90,7 +90,7 @@ public class CameraController : MonoBehaviour {
 
 	// hold down left ctrl and right mouse button and drag mouse to rotate
 	void RotateCamera() {
-		float easeFactor = 10f;
+		float easeFactor = 5f;
 		if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButton(1)) {
 			// Horizontal Rotation - Rotate camera if mouse x position has changed
 			if (Input.mousePosition.x != mouseX) {

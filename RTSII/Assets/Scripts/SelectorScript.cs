@@ -7,8 +7,8 @@ public class SelectorScript : MonoBehaviour {
 	public Texture2D selectionHighlight;
 
 	Vector3 startPosition;
-	GameObject[] selectedObjects;
-	int selectedIndex;
+	static GameObject[] selectedObjects;
+	static int selectedIndex;
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +34,7 @@ public class SelectorScript : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			LeftMouseClick();
 		} else if (Input.GetMouseButtonDown (1)) {
-			//RightMouseClick();
+			RightMouseClick();
 		} else if (Input.GetMouseButtonUp (0) && selecting) {
 			ResetSelectionBox();
 		} else if (Input.GetMouseButton (0) && selecting) {
@@ -68,6 +68,22 @@ public class SelectorScript : MonoBehaviour {
 		}
 	}
 
+	void RightMouseClick() {
+		Debug.Log ("SelectorScript: RightMouseClick: selectedIndex: " + selectedIndex,  this.gameObject);
+		GameObject hitObject = FindHitObject ();
+		Vector3 hitPoint = FindHitPoint ();
+		if (hitObject && hitObject.name == "Terrain" && hitPoint != -Vector3.one && selectedIndex > 0) {
+			for (int i = 0; i < selectedIndex; i++){
+				Debug.Log ("SelectorScript: RightMouseClick: object: " + selectedObjects[i].name, selectedObjects[i]);
+				Unit unit = hitObject.GetComponent<Unit>();
+				if (unit) {
+					Debug.Log ("SelectorScript: RightMouseClick: moving object: " + selectedObjects[i].name, selectedObjects[i]);
+					unit.SetDestination(hitPoint);
+				}
+			}
+		}
+	}
+
 	GameObject FindHitObject() {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit;
@@ -88,7 +104,7 @@ public class SelectorScript : MonoBehaviour {
 		//clear array of selected objects
 		if (selectedObjects [0]) {
 			Debug.Log ("SelectorScript: ClearSelected: number of selected objects: " + selectedIndex, this.gameObject);
-			for (int i = 0; i <= selectedIndex; i++) {
+			for (int i = 0; i < selectedIndex; i++) {
 				Debug.Log ("SelectorScript: ClearSelected: clearing: " + selectedObjects[i].name, this.gameObject);
 				selectedObjects [i].GetComponent<Selectable> ().SetSelected (false);
 				selectedObjects [i] = null;
@@ -107,4 +123,13 @@ public class SelectorScript : MonoBehaviour {
 		return Screen.height - y;
 	}
 
+	public static void AddSelected(GameObject obj) {
+		selectedObjects [selectedIndex] = obj;
+		selectedIndex++;
+	}
+
+	public static void GetUnit(GameObject obj) {
+		if (obj.name == "Rhino")
+			return obj.GetComponent<Rhino>().base
+	}
 }

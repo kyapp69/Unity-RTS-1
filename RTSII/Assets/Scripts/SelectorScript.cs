@@ -74,8 +74,7 @@ public class SelectorScript : MonoBehaviour {
 		Vector3 hitPoint = FindHitPoint ();
 		if (hitObject && hitObject.name == "Terrain" && hitPoint != -Vector3.one && selectedIndex > 0) {
 			for (int i = 0; i < selectedIndex; i++){
-				Debug.Log ("SelectorScript: RightMouseClick: object: " + selectedObjects[i].name, selectedObjects[i]);
-				Unit unit = hitObject.GetComponent<Unit>();
+				Unit unit = selectedObjects[i].GetComponent<Unit>();
 				if (unit) {
 					Debug.Log ("SelectorScript: RightMouseClick: moving object: " + selectedObjects[i].name, selectedObjects[i]);
 					unit.SetDestination(hitPoint);
@@ -126,10 +125,5 @@ public class SelectorScript : MonoBehaviour {
 	public static void AddSelected(GameObject obj) {
 		selectedObjects [selectedIndex] = obj;
 		selectedIndex++;
-	}
-
-	public static void GetUnit(GameObject obj) {
-		if (obj.name == "Rhino")
-			return obj.GetComponent<Rhino>().base
 	}
 }

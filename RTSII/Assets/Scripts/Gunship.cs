@@ -6,10 +6,11 @@ public class Gunship : Unit {
 	// Use this for initialization
 	protected override void Start () {
 		uName = "Gunship";
-		flying = true;
 		maxHitPoints = 75;
 		cost = 175;
 		moveSpeed = 7f;
+		turnSpeed = 90;
+		flying = true;
 		base.Start ();
 	}
 	

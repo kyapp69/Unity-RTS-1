@@ -5,6 +5,7 @@ public class SelectorScript : MonoBehaviour {
 	public static Rect selection = new Rect(0,0,0,0);
 	public static bool selecting;
 	public Texture2D selectionHighlight;
+	public static float mouseYLowerBound = 75f;
 
 	Vector3 startPosition;
 	static GameObject[] selectedObjects;
@@ -69,16 +70,18 @@ public class SelectorScript : MonoBehaviour {
 	}
 
 	void RightMouseClick() {
-		Debug.Log ("SelectorScript: RightMouseClick: selectedIndex: " + selectedIndex,  this.gameObject);
-		GameObject hitObject = FindHitObject ();
-		Vector3 hitPoint = FindHitPoint ();
-		if (hitObject && hitObject.name == "Terrain" && hitPoint != -Vector3.one && selectedIndex > 0) {
+		if (Input.mousePosition.y > mouseYLowerBound) {
+			Debug.Log ("SelectorScript: RightMouseClick: selectedIndex: " + selectedIndex, this.gameObject);
+			GameObject hitObject = FindHitObject ();
+			Vector3 hitPoint = FindHitPoint ();
+			if (hitObject && hitObject.name == "Terrain" && hitPoint != -Vector3.one && selectedIndex > 0) {
 
-			for (int i = 0; i < selectedIndex; i++){
-				Unit unit = selectedObjects[i].GetComponent<Unit>();
-				if (unit) {
-					Debug.Log ("SelectorScript: RightMouseClick: moving object: " + selectedObjects[i].name, selectedObjects[i]);
-					unit.SetDestination(hitPoint);
+				for (int i = 0; i < selectedIndex; i++) {
+					Unit unit = selectedObjects [i].GetComponent<Unit> ();
+					if (unit) {
+						Debug.Log ("SelectorScript: RightMouseClick: moving object: " + selectedObjects [i].name, selectedObjects [i]);
+						unit.SetDestination (hitPoint);
+					}
 				}
 			}
 		}
@@ -150,5 +153,16 @@ public class SelectorScript : MonoBehaviour {
 	public static void AddSelected(GameObject obj) {
 		selectedObjects [selectedIndex] = obj;
 		selectedIndex++;
+	}
+
+	public static int GetNumTypeSelected(string n) {
+		int total = 0;
+		for (int i = 0; i < selectedIndex; i++) {
+			Selectable selectable = selectedObjects[i].GetComponent<Selectable>();
+			if (selectable && selectable.uName == n) {
+				total++;
+			}
+		}
+		return total;
 	}
 }

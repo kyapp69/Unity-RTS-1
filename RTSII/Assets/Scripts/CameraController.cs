@@ -14,10 +14,10 @@ public class CameraController : MonoBehaviour {
 	public float zoomMax = 50f;
 	public float scrollMult = 3;
 	public float zoomMult = 0.1f;
+	public float verticalRotationMin = 25f; // <in degrees
+	public float verticalRotationMax = 65f; // < in degrees
 
 	bool verticalRotationEnabled = true;
-	float verticalRotationMin = 25f; // <in degrees
-	float verticalRotationMax = 65f; // < in degrees
 	float mouseX;
 	float mouseY;
 

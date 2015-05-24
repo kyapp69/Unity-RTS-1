@@ -2,14 +2,13 @@
 using System.Collections;
 
 public class Gunship : Unit {
-
 	// Use this for initialization
 	protected override void Start () {
 		uName = "Gunship";
 		maxHitPoints = 75;
 		cost = 175;
 		moveSpeed = 7f;
-		turnSpeed = 90;
+		turnSpeed = 2f;
 		flying = true;
 		base.Start ();
 	}
@@ -17,5 +16,6 @@ public class Gunship : Unit {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();
+
 	}
 }

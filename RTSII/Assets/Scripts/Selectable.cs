@@ -20,7 +20,9 @@ public class Selectable : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void Update () {
-		CheckSelectionBox ();
+		if (team == 1) {
+			CheckSelectionBox ();
+		}
 	}
 
 	void CheckSelectionBox() {

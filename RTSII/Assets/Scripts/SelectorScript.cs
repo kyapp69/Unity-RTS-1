@@ -73,6 +73,7 @@ public class SelectorScript : MonoBehaviour {
 		GameObject hitObject = FindHitObject ();
 		Vector3 hitPoint = FindHitPoint ();
 		if (hitObject && hitObject.name == "Terrain" && hitPoint != -Vector3.one && selectedIndex > 0) {
+
 			for (int i = 0; i < selectedIndex; i++){
 				Unit unit = selectedObjects[i].GetComponent<Unit>();
 				if (unit) {
@@ -116,6 +117,30 @@ public class SelectorScript : MonoBehaviour {
 		selecting = false;
 		startPosition = -Vector3.one;
 		selection = new Rect(0,0,0,0);
+	}
+
+	public static Vector3 GetLandGroupCenter() {
+		Vector3 totalLand = new Vector3(0, 0, 0);
+		int land = 0;
+		for (int i = 0; i < selectedIndex; i++) {
+			if (selectedObjects [i].GetComponent<Unit> () && !selectedObjects[i].GetComponent<Unit>().flying) {
+				land++;
+				totalLand += selectedObjects[i].GetComponent<Transform>().position;
+			}
+		}
+		return totalLand / land;
+	}
+
+	public static Vector3 GetAirGroupCenter() {
+		Vector3 totalAir = new Vector3(0, 0, 0);
+		int air = 0;
+		for (int i = 0; i < selectedIndex; i++) {
+			if (selectedObjects [i].GetComponent<Unit> () && selectedObjects [i].GetComponent<Unit> ().flying) {
+				air++;
+				totalAir += selectedObjects [i].GetComponent<Transform> ().position;
+			}
+		}
+		return totalAir / air;
 	}
 	
 	public static float InvertMouseY(float y) {

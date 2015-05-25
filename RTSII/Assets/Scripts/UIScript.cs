@@ -5,78 +5,57 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour {
 	public GameObject unitPanel;
 	public Text oreText;
-	public Button RhinoSelectedButton;
-	public Button GunshipSelectedButton;
-	public Button EngineerSelectedButton;
-	public Button ColonySelectedButton;
+	public Button rhinoSelectedButton;
+	public Button gunshipSelectedButton;
+	public Button engineerSelectedButton;
+	public Button colonySelectedButton;
 	//buttons for other units as well
 
-	//RTSCamera cam;
+	public Button buildEngineerButton;
+
+	SelectorScript selectorScript;
 
 	void Start() {
-		//cam = transform.GetComponent<RTSCamera> (); 
+		selectorScript = transform.GetComponent<SelectorScript> ();   
 	}
 
 	// Update is called once per frame
 	void Update () {
-		oreText.text = "" + SelectorScript.ore;
+		oreText.text = "" + selectorScript.ore;
 		if (Input.GetMouseButtonUp (0) && Input.mousePosition.y > SelectorScript.mouseYLowerBound) {
 			Debug.Log ("UIScript: Update: registered left mouse button release", Camera.main);
 			WhichButtonsToDisplay();
 		}
-		if (Input.GetMouseButtonDown (0) & Input.mousePosition.y > SelectorScript.mouseYLowerBound) {
-			foreach (Transform child in unitPanel.GetComponentsInChildren<RectTransform>()) {
-				if (child.gameObject.name != "UIPanel") {
-					Destroy(child.gameObject);
-				}
-			}
-		}
 	}
 
-	void WhichButtonsToDisplay() {
+	public void WhichButtonsToDisplay() {
 		Button[] buttons = new Button[9]; //<at most 9 are needed
 		int buttonIndex = 0;
 		//put buildings first
 		int numColonies = SelectorScript.GetNumTypeSelected ("Colony");
 		if (numColonies > 0) {
-			Button colonyButton = Instantiate (ColonySelectedButton);
-			colonyButton.GetComponent<RectTransform>().SetParent (unitPanel.GetComponent<Transform>(), false);
-			colonyButton.GetComponentInChildren<Text>().text = "" + numColonies;
-			colonyButton.GetComponentInChildren<Text>().color = Color.white;
-			colonyButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
-			buttons[buttonIndex] = colonyButton;
+			colonySelectedButton.GetComponentInChildren<Text>().text = "" + numColonies;
+			buttons[buttonIndex] = colonySelectedButton;
 			buttonIndex++;
 		}
 		int numEngineers = SelectorScript.GetNumTypeSelected ("Engineer");
 		if (numEngineers > 0) {
-			Button engineerButton = Instantiate (EngineerSelectedButton);
-			engineerButton.GetComponent<RectTransform>().SetParent (unitPanel.GetComponent<Transform>(), false);
-			engineerButton.GetComponentInChildren<Text>().text = "" + numEngineers;
-			engineerButton.GetComponentInChildren<Text>().color = Color.white;
-			engineerButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
-			buttons[buttonIndex] = engineerButton;
+			engineerSelectedButton.GetComponentInChildren<Text>().text = "" + numEngineers;
+			buttons[buttonIndex] = engineerSelectedButton;
 			buttonIndex++;
 		}
 		//display rhino selection image and number of rhinos selected
 		int numRhinos = SelectorScript.GetNumTypeSelected("Rhino");
 		//Debug.Log ("UIScript: WhichButtonsToDisplay: numRhinos: " + numRhinos, Camera.main);
 		if (numRhinos > 0) {
-			Button rhinoButton = Instantiate (RhinoSelectedButton);
-			rhinoButton.GetComponent<RectTransform>().SetParent (unitPanel.GetComponent<Transform>(), false);
-			rhinoButton.GetComponentInChildren<Text>().text = "" + numRhinos;
-			rhinoButton.GetComponentInChildren<Text>().color = Color.white;
-			rhinoButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
-			buttons[buttonIndex] = rhinoButton;
+			rhinoSelectedButton.GetComponentInChildren<Text>().text = "" + numRhinos;
+			buttons[buttonIndex] = rhinoSelectedButton;
 			buttonIndex++;
 		}
 		int numGunships = SelectorScript.GetNumTypeSelected ("Gunship");
 		if (numGunships > 0) {
-			Button gunshipButton = Instantiate (GunshipSelectedButton);
-			gunshipButton.GetComponent<RectTransform>().SetParent (unitPanel.GetComponent<Transform>(), false);
-			gunshipButton.GetComponentInChildren<Text>().text = "" + numGunships;
-			gunshipButton.GetComponentInChildren<Text>().color = Color.white;
-			gunshipButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
-			buttons[buttonIndex] = gunshipButton;
+			gunshipSelectedButton.GetComponentInChildren<Text>().text = "" + numGunships;
+			buttons[buttonIndex] = gunshipSelectedButton;
 			buttonIndex++;
 		}
 		//same shit for other units
@@ -93,5 +72,30 @@ public class UIScript : MonoBehaviour {
 				x += 55; 
 			}
 		}
+	}
+
+	public void RemoveButtons(string name) {
+		string buttonName = "";
+		if (name == "Rhino") {
+			buttonName = "RhinoSelectedButton";
+		} else if (name == "Gunship") {
+			buttonName = "GunshipSelectedButton";
+		} else if (name == "Engineer") {
+			buttonName = "EngineerSelectedButton";
+		} else if (name == "Colony") {
+			buttonName = "ColonySelectesButton";
+		}
+		foreach (Transform child in unitPanel.GetComponentsInChildren<RectTransform>()) {
+			if (child.gameObject.name != "UIPanel" && child.gameObject.name != "Text" && child.gameObject.name != buttonName) {
+				RectTransform trans = child.gameObject.GetComponent<RectTransform>();
+				trans.position = new Vector3(trans.position.x, trans.position.y-60, 0);
+			} else if (child.gameObject.name == buttonName) {
+				child.gameObject.GetComponent<RectTransform>().position = new Vector3(5,5,0);
+			}
+		}
+	}
+
+	public void DisplayColonyBuildList(){
+
 	}
 }

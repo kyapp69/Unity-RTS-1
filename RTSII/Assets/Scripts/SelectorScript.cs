@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class SelectorScript : MonoBehaviour {
 	public static Rect selection = new Rect(0,0,0,0);
 	public static bool selecting;
 	public Texture2D selectionHighlight;
 	public static float mouseYLowerBound = 60f;
-	public static int ore = 100;
+	public int ore = 100;
 
 	Vector3 startPosition;
 	static GameObject[] selectedObjects;
 	static int selectedIndex;
+	UIScript uiscript;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class SelectorScript : MonoBehaviour {
 		selecting = false;
 		selectedObjects = new GameObject[100];
 		selectedIndex = 0;
+		uiscript = transform.GetComponent<UIScript> ();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +35,7 @@ public class SelectorScript : MonoBehaviour {
 	}
 
 	void MouseActivity() {
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetMouseButtonDown (0) && Input.mousePosition.y > mouseYLowerBound) {
 			LeftMouseClick();
 		} else if (Input.GetMouseButtonDown (1)) {
 			RightMouseClick();
@@ -53,7 +55,7 @@ public class SelectorScript : MonoBehaviour {
 	}
 
 	void LeftMouseClick() {
-		ClearSelected ();
+		ClearSelected ("all");
 		GameObject hitObject = FindHitObject ();
 		Vector3 hitPoint = FindHitPoint ();
 		if (hitObject && hitPoint != -Vector3.one) {
@@ -104,7 +106,7 @@ public class SelectorScript : MonoBehaviour {
 		return -Vector3.one;
 	}
 	
-	void ClearSelected() {
+	void ClearSelected(string name) {
 		//clear array of selected objects
 		if (selectedObjects [0]) {
 			Debug.Log ("SelectorScript: ClearSelected: number of selected objects: " + selectedIndex, this.gameObject);
@@ -113,6 +115,7 @@ public class SelectorScript : MonoBehaviour {
 				selectedObjects [i].GetComponent<Selectable> ().SetSelected (false);
 				selectedObjects [i] = null;
 			}
+			uiscript.RemoveButtons(name);
 			selectedIndex = 0;
 		}
 	}
@@ -166,5 +169,22 @@ public class SelectorScript : MonoBehaviour {
 			}
 		}
 		return total;
+	}
+
+	public void UnitSelect(string name) {
+		Debug.Log ("SelectorScript: UnitSelect: Button Pressed", this.gameObject);
+		List<GameObject> rhinos = new List<GameObject> ();
+		for (int i = 0; i < selectedIndex; i++) {
+			if (selectedObjects[i].GetComponent<Selectable>().uName == name) {
+				Debug.Log ("SelectorScript: RhinoSelect: Adding to list", this.gameObject);
+				rhinos.Add(selectedObjects[i]);
+			}
+		}
+		ClearSelected (name);
+		Debug.Log ("SelectorScript: RhinoSelect: list = ," + rhinos.ToString(), this.gameObject);
+		foreach (GameObject obj in rhinos) {
+			obj.GetComponent<Selectable>().SetSelected(true);
+			AddSelected(obj); 
+		}
 	}
 }

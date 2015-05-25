@@ -5,7 +5,8 @@ public class SelectorScript : MonoBehaviour {
 	public static Rect selection = new Rect(0,0,0,0);
 	public static bool selecting;
 	public Texture2D selectionHighlight;
-	public static float mouseYLowerBound = 75f;
+	public static float mouseYLowerBound = 60f;
+	public static int ore = 100;
 
 	Vector3 startPosition;
 	static GameObject[] selectedObjects;
@@ -157,6 +158,7 @@ public class SelectorScript : MonoBehaviour {
 
 	public static int GetNumTypeSelected(string n) {
 		int total = 0;
+		Debug.Log ("SelectorScript: GetNumTypeSelected: selectedIndex = " + selectedIndex + ", n = " + n, Camera.main);
 		for (int i = 0; i < selectedIndex; i++) {
 			Selectable selectable = selectedObjects[i].GetComponent<Selectable>();
 			if (selectable && selectable.uName == n) {

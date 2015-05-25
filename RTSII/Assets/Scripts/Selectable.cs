@@ -26,7 +26,7 @@ public class Selectable : MonoBehaviour {
 	}
 
 	void CheckSelectionBox() {
-		if (GetComponentInChildren<Renderer>().isVisible && Input.GetMouseButtonUp (0) && SelectorScript.selecting && team == 1) {
+		if (GetComponentInChildren<Renderer>().isVisible && Input.GetMouseButtonUp (0) && SelectorScript.selecting && team == 1 && Input.mousePosition.y > SelectorScript.mouseYLowerBound) {
 			Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
 			camPos.y = SelectorScript.InvertMouseY(camPos.y);
 			bool s;

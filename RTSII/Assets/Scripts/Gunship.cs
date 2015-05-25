@@ -7,7 +7,7 @@ public class Gunship : Unit {
 		uName = "Gunship";
 		maxHitPoints = 75;
 		cost = 175;
-		moveSpeed = 7f;
+		moveSpeed = 9f;
 		turnSpeed = 2f;
 		flying = true;
 		base.Start ();

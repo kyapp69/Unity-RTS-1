@@ -25,6 +25,12 @@ public class SelectorScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		MouseActivity();
+		Selectable sameSelectedType = CheckForSelection ();
+		if (sameSelectedType) {
+			if (sameSelectedType.uName == "Colony") {
+				//display buttons
+			}
+		}
 	}
 
 	void OnGUI() {
@@ -124,6 +130,22 @@ public class SelectorScript : MonoBehaviour {
 		selecting = false;
 		startPosition = -Vector3.one;
 		selection = new Rect(0,0,0,0);
+	}
+
+	Selectable CheckForSelection() {
+		if (selectedIndex > 0) {
+			Selectable first = selectedObjects[0].GetComponent<Selectable>();
+			bool allSame = true;
+			for (int i = 0; i < selectedIndex; i++) {
+				if (first.uName != selectedObjects[i].GetComponent<Selectable>().uName) {
+					allSame = false;
+				}
+			}
+			if (allSame) {
+						return first;
+			}
+		}
+		return null;
 	}
 
 	public static Vector3 GetLandGroupCenter() {

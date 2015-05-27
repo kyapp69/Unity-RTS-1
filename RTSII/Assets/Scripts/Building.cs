@@ -11,11 +11,13 @@ public class Building : Selectable {
 	float buildTimer;
 	Vector3 spawnPosition;
 	BuildQueueItem currentBuild;
+	Transform buildBar;
 	// Use this for initialization
 	protected override void Start () {
 		base.Start ();
 		constructing = false;
 		buildQueue = new List<BuildQueueItem> ();
+		buildBar = GetComponentInChildren<BuildBar> ().GetComponent<Transform>();
 		spawnPosition = new Vector3 (transform.position.x + 1.5f, transform.position.y, transform.position.z);
 	}
 	
@@ -24,6 +26,7 @@ public class Building : Selectable {
 		base.Update ();
 		if (constructing) {
 			buildTimer += Time.deltaTime;
+			buildBar.localScale = new Vector3(buildTimer / currentBuild.buildTime, buildBar.localScale.y, buildBar.localScale.z);
 			if (buildTimer >= currentBuild.buildTime) {
 				CompleteBuilding ();
 			}

@@ -6,11 +6,14 @@ public class Selectable : MonoBehaviour {
 	public string uName;
 	public int maxHitPoints;
 	public int cost;
+	public Texture2D barTexture;
 
 	bool selected;
 	SpriteRenderer selectionBox;
 	int hitPoints;
 	Animator anim;
+	float barWidth = 800f;
+	float barHeight = 28f;
 
 	// Use this for initialization
 	protected virtual void Start () {

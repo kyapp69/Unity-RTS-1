@@ -11,8 +11,7 @@ public class UIScript : MonoBehaviour {
 	public Button colonySelectedButton;
 	//buttons for other units as well
 
-	public Button buildEngineerButton;
-
+	public Button engineerBuildButton;
 	SelectorScript selectorScript;
 
 	void Start() {
@@ -26,6 +25,10 @@ public class UIScript : MonoBehaviour {
 			Debug.Log ("UIScript: Update: registered left mouse button release", Camera.main);
 			WhichButtonsToDisplay();
 		}
+	}
+
+	public void DisplayColonyBuildButtons() {
+
 	}
 
 	public void WhichButtonsToDisplay() {

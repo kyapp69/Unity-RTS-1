@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class Engineer : Unit {
+	public int oreCapacity = 10;
 
+	int currentOre;
 	// Use this for initialization
 	protected override void Start () {
 		uName = "Engineer";
@@ -10,7 +12,8 @@ public class Engineer : Unit {
 		cost = 30;
 		moveSpeed = 5f;
 		turnSpeed = 120f;
-		flying = false;
+		currentOre = 0;
+		flying = false;   
 		base.Start ();
 	}
 	

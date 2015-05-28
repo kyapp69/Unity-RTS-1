@@ -6,7 +6,7 @@ public class SelectorScript : MonoBehaviour {
 	public static bool selecting;
 	public Texture2D selectionHighlight;
 	public static float mouseYLowerBound = 60f;
-	public int ore = 100;
+	public static int ore = 100;
 
 	Vector3 startPosition;
 	static GameObject[] selectedObjects;
@@ -28,7 +28,7 @@ public class SelectorScript : MonoBehaviour {
 		Selectable sameSelectedType = CheckForSelection ();
 		if (sameSelectedType) {
 			if (sameSelectedType.uName == "Colony") {
-				//display buttons
+				uiscript.DisplayColonyBuildButtons();
 			}
 		}
 	}
@@ -207,6 +207,13 @@ public class SelectorScript : MonoBehaviour {
 		foreach (GameObject obj in rhinos) {
 			obj.GetComponent<Selectable>().SetSelected(true);
 			AddSelected(obj); 
+			selectedIndex = rhinos.Count;
+		}
+	}
+
+	public void BuildEngineer() {
+		for (int i = 0; i < selectedIndex; i++) {
+			selectedObjects[i].GetComponent<Building>().addToBuildList("Engineer");
 		}
 	}
 }

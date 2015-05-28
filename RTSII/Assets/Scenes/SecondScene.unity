@@ -317,6 +317,22 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11412650, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
+      propertyPath: engineer
+      value: 
+      objectReference: {fileID: 139446, guid: 3a07e9527a67c6c43a8a38f62052a7e5, type: 2}
+    - target: {fileID: 11412650, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
+      propertyPath: rhino
+      value: 
+      objectReference: {fileID: 142616, guid: 9922d48a5e54d2f4181ac8d581a13ab3, type: 2}
+    - target: {fileID: 11412650, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
+      propertyPath: gunship
+      value: 
+      objectReference: {fileID: 126696, guid: d912cc23b54deee489e6134c8d68da4a, type: 2}
+    - target: {fileID: 5422288, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
   m_IsPrefabParent: 0
@@ -619,6 +635,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &791887682 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11489124, guid: 5d3ab5e6dd6193f48b030bd2874e0880,
+    type: 2}
+  m_PrefabInternal: {fileID: 1190929953}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &835802207
 Prefab:
   m_ObjectHideFlags: 0
@@ -989,7 +1011,7 @@ MonoBehaviour:
   gunshipSelectedButton: {fileID: 237022993}
   engineerSelectedButton: {fileID: 471344130}
   colonySelectedButton: {fileID: 1145349696}
-  buildEngineerButton: {fileID: 2088263545}
+  engineerBuildButton: {fileID: 791887682}
 --- !u!1001 &1145349694
 Prefab:
   m_ObjectHideFlags: 0
@@ -1118,6 +1140,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 469192263}
     m_Modifications:
+    - target: {fileID: 11489124, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 22475102, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1201,6 +1227,26 @@ Prefab:
     - target: {fileID: 11436660, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
       propertyPath: m_FontData.m_FontSize
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489124, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489124, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489124, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1091702136}
+    - target: {fileID: 11489124, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuildEngineer
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489124, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}

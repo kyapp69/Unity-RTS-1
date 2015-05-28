@@ -20,7 +20,7 @@ public class UIScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		oreText.text = "" + selectorScript.ore;
+		oreText.text = "" + SelectorScript.ore;
 		if (Input.GetMouseButtonUp (0) && Input.mousePosition.y > SelectorScript.mouseYLowerBound) {
 			Debug.Log ("UIScript: Update: registered left mouse button release", Camera.main);
 			WhichButtonsToDisplay();
@@ -28,7 +28,7 @@ public class UIScript : MonoBehaviour {
 	}
 
 	public void DisplayColonyBuildButtons() {
-
+		engineerBuildButton.GetComponent<RectTransform>().position = new Vector3(65, 5, 0);
 	}
 
 	public void WhichButtonsToDisplay() {
@@ -96,9 +96,5 @@ public class UIScript : MonoBehaviour {
 				child.gameObject.GetComponent<RectTransform>().position = new Vector3(5,5,0);
 			}
 		}
-	}
-
-	public void DisplayColonyBuildList(){
-
 	}
 }

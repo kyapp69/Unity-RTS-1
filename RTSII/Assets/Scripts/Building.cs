@@ -17,8 +17,9 @@ public class Building : Selectable {
 		base.Start ();
 		constructing = false;
 		buildQueue = new List<BuildQueueItem> ();
-		buildBar = GetComponentInChildren<BuildBar> ().GetComponent<Transform>();
-		spawnPosition = new Vector3 (transform.position.x + 1.5f, transform.position.y, transform.position.z);
+		buildBar = GetComponentInChildren<BuildBar> ().GetComponent<Transform> ();
+		buildBar.localScale = new Vector3 (buildBar.localScale.x, 0.01f, buildBar.localScale.z);
+		spawnPosition = new Vector3 (transform.position.x + 4f, transform.position.y, transform.position.z);
 	}
 	
 	// Update is called once per frame
@@ -26,7 +27,7 @@ public class Building : Selectable {
 		base.Update ();
 		if (constructing) {
 			buildTimer += Time.deltaTime;
-			buildBar.localScale = new Vector3(buildTimer / currentBuild.buildTime, buildBar.localScale.y, buildBar.localScale.z);
+			buildBar.localScale = new Vector3(buildBar.localScale.x, (buildTimer / currentBuild.buildTime) / 7, buildBar.localScale.z);
 			if (buildTimer >= currentBuild.buildTime) {
 				CompleteBuilding ();
 			}
@@ -42,25 +43,27 @@ public class Building : Selectable {
 		constructing = true;
 		buildTimer = 0f;
 		currentBuild = buildQueue[0];
-		buildQueue.RemoveAt (0);
 	}
 
 	public void CompleteBuilding() {
-		constructing = false;
 		//place the unit in the game world
-		if (currentBuild.name == "Rhino") {
+		if (currentBuild.objectName == "Rhino") {
 			Instantiate (rhino, spawnPosition, transform.rotation);
-		} else if (currentBuild.name == "Engineer") {
+		} else if (currentBuild.objectName == "Engineer") {
 			Instantiate (engineer, spawnPosition, transform.rotation);
-		} else if (currentBuild.name == "Gunship") {
+		} else if (currentBuild.objectName == "Gunship") {
 			Instantiate(gunship, new Vector3(transform.position.x, transform.position.y + 15, transform.position.z), transform.rotation);
 		}
+		buildBar.localScale = new Vector3 (buildBar.localScale.x, 0.01f, buildBar.localScale.z);
+		buildQueue.RemoveAt (0);
+		constructing = false;
 	}
 
 	public void addToBuildList(string name){
 		float time = 0f;
 		if (uName == "Colony") {
-			if (name == "Engineer") {
+			if (name == "Engineer" && 30 <= SelectorScript.ore) {
+				SelectorScript.ore -= 30;
 				time = 20f;
 			}
 		} else if (uName == "Factory") {

@@ -313,26 +313,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11156246, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11412650, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
-      propertyPath: engineer
-      value: 
-      objectReference: {fileID: 139446, guid: 3a07e9527a67c6c43a8a38f62052a7e5, type: 2}
-    - target: {fileID: 11412650, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
-      propertyPath: rhino
-      value: 
-      objectReference: {fileID: 142616, guid: 9922d48a5e54d2f4181ac8d581a13ab3, type: 2}
-    - target: {fileID: 11412650, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
-      propertyPath: gunship
-      value: 
-      objectReference: {fileID: 126696, guid: d912cc23b54deee489e6134c8d68da4a, type: 2}
-    - target: {fileID: 5422288, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
-      propertyPath: m_Constraints
-      value: 14
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
   m_IsPrefabParent: 0
@@ -691,10 +671,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d912cc23b54deee489e6134c8d68da4a, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &860056620 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 478704, guid: ace42683ce3dbee4a8da9a9eda7a0ad5, type: 2}
-  m_PrefabInternal: {fileID: 331759673}
 --- !u!1 &906692707
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,68 +786,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9922d48a5e54d2f4181ac8d581a13ab3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &978500976
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 169364, guid: d912cc23b54deee489e6134c8d68da4a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 978500977}
-  - 33: {fileID: 978500980}
-  - 23: {fileID: 978500979}
-  m_Layer: 0
-  m_Name: BuildBar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &978500977
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 417892, guid: d912cc23b54deee489e6134c8d68da4a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 978500976}
-  m_LocalRotation: {x: .500000179, y: .499999851, z: .49999997, w: .500000119}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.66666698, z: .5}
-  m_Children: []
-  m_Father: {fileID: 1696277965}
-  m_RootOrder: 0
---- !u!23 &978500979
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2340838, guid: d912cc23b54deee489e6134c8d68da4a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 978500976}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 2100000, guid: b4e4cefa29741b44aa9089c2399c03aa, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &978500980
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3308146, guid: d912cc23b54deee489e6134c8d68da4a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 978500976}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1018191376
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,7 +907,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionHighlight: {fileID: 2800000, guid: 6f631d421a34b3349a47f14fb43cb5b4, type: 3}
-  ore: 100
 --- !u!114 &1091702137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,6 +925,8 @@ MonoBehaviour:
   engineerSelectedButton: {fileID: 471344130}
   colonySelectedButton: {fileID: 1145349696}
   engineerBuildButton: {fileID: 791887682}
+  engineerBuildQueueButton: {fileID: 11489124, guid: 5d3ab5e6dd6193f48b030bd2874e0880,
+    type: 2}
 --- !u!1001 &1145349694
 Prefab:
   m_ObjectHideFlags: 0
@@ -1182,7 +1097,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22475102, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -60
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22475102, guid: 5d3ab5e6dd6193f48b030bd2874e0880, type: 2}
       propertyPath: m_SizeDelta.x
@@ -1448,47 +1363,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ccb4cd494d0a484bb072b5ad61c2a2b, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1696277964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 191238, guid: d912cc23b54deee489e6134c8d68da4a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1696277965}
-  - 114: {fileID: 1696277966}
-  m_Layer: 0
-  m_Name: BuildBarTrans
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1696277965
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 495860, guid: d912cc23b54deee489e6134c8d68da4a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1696277964}
-  m_LocalRotation: {x: -.49999997, y: -.499999911, z: .49999997, w: .500000119}
-  m_LocalPosition: {x: 0, y: 1.61899996, z: 0}
-  m_LocalScale: {x: .00999999698, y: .0999999568, z: .059999954}
-  m_Children:
-  - {fileID: 978500977}
-  m_Father: {fileID: 860056620}
-  m_RootOrder: 6
---- !u!114 &1696277966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11478530, guid: d912cc23b54deee489e6134c8d68da4a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1696277964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b10be5d954144e642b48550945593533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1776156208
 GameObject:
   m_ObjectHideFlags: 0

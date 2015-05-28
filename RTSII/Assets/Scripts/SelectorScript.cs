@@ -29,6 +29,9 @@ public class SelectorScript : MonoBehaviour {
 		if (sameSelectedType) {
 			if (sameSelectedType.uName == "Colony") {
 				uiscript.DisplayColonyBuildButtons();
+				if (selectedIndex == 1) {
+					DisplayBuildQueue();
+				}
 			}
 		}
 	}
@@ -146,6 +149,24 @@ public class SelectorScript : MonoBehaviour {
 			}
 		}
 		return null;
+	}
+
+	void DisplayBuildQueue() {
+		Building building = selectedObjects [0].GetComponent<Building> ();
+		int num = 0;
+		string lastName = "";
+		foreach (BuildQueueItem item in building.buildQueue){
+			if (item.objectName == lastName){
+				num++;
+			} else {
+				if (lastName != "") {
+					//create a button with the given number of same units in a row
+					uiscript.AddBuildQueue(lastName, num);
+					num = 0;
+				}
+				lastName = item.objectName;
+			}
+		}
 	}
 
 	public static Vector3 GetLandGroupCenter() {

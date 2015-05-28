@@ -11,11 +11,19 @@ public class UIScript : MonoBehaviour {
 	public Button colonySelectedButton;
 	//buttons for other units as well
 
+	//build buttons
 	public Button engineerBuildButton;
+
+	//build queue buttons
+	public Button engineerBuildQueueButton;
+
 	SelectorScript selectorScript;
+	int number;
+	int queueNum;
 
 	void Start() {
 		selectorScript = transform.GetComponent<SelectorScript> ();   
+		queueNum = 0;
 	}
 
 	// Update is called once per frame
@@ -29,6 +37,24 @@ public class UIScript : MonoBehaviour {
 
 	public void DisplayColonyBuildButtons() {
 		engineerBuildButton.GetComponent<RectTransform>().position = new Vector3(65, 5, 0);
+	}
+
+	//build queue first item at (345, 5, 0)
+	public void AddBuildQueue(string name, int number) {
+		if (queueNum < 9) {
+			float x = 345;
+			for (int i = 0; i < queueNum; i++) {
+				x += 55;
+			}
+			Vector3 position = new Vector3 (x, 5, 0);
+			if (name == "Engineer") {
+				GameObject button = Instantiate (engineerBuildQueueButton, position, engineerBuildQueueButton.GetComponent<Transform> ().rotation) as GameObject;
+				button.GetComponent<RectTransform> ().anchoredPosition = new Vector2(0,0);
+				button.GetComponent<RectTransform> ().parent = unitPanel.GetComponent<Transform>();
+				button.GetComponentInChildren<Text> ().text = "" + number;
+			}
+			queueNum++;
+		}
 	}
 
 	public void WhichButtonsToDisplay() {
@@ -96,5 +122,6 @@ public class UIScript : MonoBehaviour {
 				child.gameObject.GetComponent<RectTransform>().position = new Vector3(5,5,0);
 			}
 		}
+		queueNum = 0;
 	}
 }

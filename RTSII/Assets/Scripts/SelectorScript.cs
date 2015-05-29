@@ -153,19 +153,20 @@ public class SelectorScript : MonoBehaviour {
 
 	void DisplayBuildQueue() {
 		Building building = selectedObjects [0].GetComponent<Building> ();
-		int num = 0;
-		string lastName = "";
-		foreach (BuildQueueItem item in building.buildQueue){
-			if (item.objectName == lastName){
-				num++;
-			} else {
-				if (lastName != "") {
+		int num = 1;
+		if (building.buildQueue.Count > 0) {
+			string lastName = building.buildQueue[0].objectName; 
+			for (int i = 1; i < building.buildQueue.Count; i++){
+				if (building.buildQueue[i].objectName == lastName){
+					num++;
+				} else {
 					//create a button with the given number of same units in a row
+					Debug.Log ("SelectorScript: DisplayBuildQueue: adding button name: " + building.buildQueue[i].objectName + " number: " + num, this.gameObject);
 					uiscript.AddBuildQueue(lastName, num);
-					num = 0;
+					num = 1;
 				}
-				lastName = item.objectName;
 			}
+			uiscript.AddBuildQueue(lastName, num);
 		}
 	}
 
@@ -204,7 +205,7 @@ public class SelectorScript : MonoBehaviour {
 
 	public static int GetNumTypeSelected(string n) {
 		int total = 0;
-		Debug.Log ("SelectorScript: GetNumTypeSelected: selectedIndex = " + selectedIndex + ", n = " + n, Camera.main);
+		//Debug.Log ("SelectorScript: GetNumTypeSelected: selectedIndex = " + selectedIndex + ", n = " + n, Camera.main);
 		for (int i = 0; i < selectedIndex; i++) {
 			Selectable selectable = selectedObjects[i].GetComponent<Selectable>();
 			if (selectable && selectable.uName == n) {

@@ -41,15 +41,18 @@ public class UIScript : MonoBehaviour {
 
 	//build queue first item at (345, 5, 0)
 	public void AddBuildQueue(string name, int number) {
+		Debug.Log ("UIScript: AddBuildQueue: queueNum: " + queueNum, this.gameObject);
 		if (queueNum < 9) {
 			float x = 345;
 			for (int i = 0; i < queueNum; i++) {
 				x += 55;
 			}
-			Vector3 position = new Vector3 (x, 5, 0);
+			Vector3 position = new Vector3 (x, 0, 5);
+			Debug.Log ("UIScript: AddBuildQueue: position: " + position.ToString(), this.gameObject);
 			if (name == "Engineer") {
-				GameObject button = Instantiate (engineerBuildQueueButton, position, engineerBuildQueueButton.GetComponent<Transform> ().rotation) as GameObject;
-				button.GetComponent<RectTransform> ().anchoredPosition = new Vector2(0,0);
+				Debug.Log ("UIScript: AddBuildQueue: adding engineer button", this.gameObject);
+				Button button = Instantiate (engineerBuildQueueButton);
+				button.GetComponent<RectTransform> ().position = new Vector2(345,5);
 				button.GetComponent<RectTransform> ().parent = unitPanel.GetComponent<Transform>();
 				button.GetComponentInChildren<Text> ().text = "" + number;
 			}
@@ -123,5 +126,11 @@ public class UIScript : MonoBehaviour {
 			}
 		}
 		queueNum = 0;
+	}
+
+	public void clearQueueButtons() {
+		foreach (Transform child in unitPanel.GetComponentsInChildren<RectTransform>()) {
+
+		}
 	}
 }

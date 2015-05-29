@@ -119,7 +119,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148050}
-  m_LocalRotation: {x: 1.62920685e-07, y: 1, z: 1.62920685e-07, w: 2.65431496e-14}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -170,8 +170,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139446}
-  m_LocalRotation: {x: -1.62920685e-07, y: -1, z: -1.62920685e-07, w: 2.65431496e-14}
-  m_LocalPosition: {x: 63.9900017, y: 11.9899998, z: 154.649994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.1000004, y: 12.3999996, z: 59.9000015}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 409020}
@@ -320,6 +320,8 @@ MonoBehaviour:
   flying: 0
   text1: {fileID: 0}
   text2: {fileID: 0}
+  oreCapacity: 10
+  miningTime: .5
 --- !u!195 &19546352
 NavMeshAgent:
   m_ObjectHideFlags: 1

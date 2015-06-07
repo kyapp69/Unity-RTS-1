@@ -7,12 +7,11 @@ public class ShipMovement : MonoBehaviour {
 	public float maxTurnSpeed = 5f;
 	public float acceleration = 0.75f;
 
-	public Text text1;
-	public Text text2;
+	//public Text text1;
+	//public Text text2;
 
 	bool moving;
 	bool turning;
-	bool accelerating;
 	bool decelerating;
 	bool limitSpeed;
 	Vector3 destination;
@@ -23,7 +22,6 @@ public class ShipMovement : MonoBehaviour {
 	void Start () {
 		moving = false;
 		turning = false;
-		accelerating = false;
 		decelerating = false;
 		destination = Vector3.zero;
 		rigidbody = GetComponent<Rigidbody> ();
@@ -41,19 +39,20 @@ public class ShipMovement : MonoBehaviour {
 		}
 
 		//display current position and destination 
-		text1.text = "Current Position: " + transform.position.ToString() + " Decelerating: " + decelerating+ "Speed: " + speed;
-		text2.text = "Destination: " + destination.ToString () + " Distance: " + (transform.position - destination).magnitude;
+		//text1.text = "Current Position: " + transform.position.ToString() + " Decelerating: " + decelerating+ "Speed: " + speed;
+		//text2.text = "Destination: " + destination.ToString () + " Distance: " + (transform.position - destination).magnitude;
 	}
 
 	void FixedUpdate() {
 		if (turning) {
 			turnSpeed = maxTurnSpeed * (speed / maxSpeed);
-			if ((transform.position - destination).magnitude < 5 || limitSpeed) {
+			float targetDistance = (transform.position - destination).magnitude;
+			if (targetDistance < 5 || limitSpeed) {
 				turnSpeed *= 2f;
 			}
 			Vector3 targetDirection = destination - transform.position;
 			Vector3 localTarget = transform.InverseTransformPoint (destination);
-			
+			  
 			float angle = Mathf.Atan2 (localTarget.x, localTarget.z) * Mathf.Rad2Deg;
 			if (speed > .5f){
 				Vector3 eulerAngleVelocity = new Vector3 (0, angle, 0);
@@ -64,7 +63,7 @@ public class ShipMovement : MonoBehaviour {
 			bool dec = false;
 			//move towards destination
 			float distance = - Mathf.Pow(speed, 2) / (2 * -acceleration);
-			if ((transform.position - destination).magnitude <= distance) { 
+			if (targetDistance <= distance) { 
 				decelerating = true;
 			} else
 				decelerating = false;
@@ -102,7 +101,6 @@ public class ShipMovement : MonoBehaviour {
 
 			Vector3 targetVelocity = (transform.forward).normalized * speed;
 			rigidbody.velocity = targetVelocity;
-
 		}
 	}
 
@@ -124,7 +122,7 @@ public class ShipMovement : MonoBehaviour {
 			moving = true;
 			turning = true;
 			decelerating = false;
-		} else if (distance > 10) {
+		} else if (distance > 15) {
 			destination = d;
 			if (distance <= 20) {
 				limitSpeed = true;
@@ -142,10 +140,6 @@ public class ShipMovement : MonoBehaviour {
 
 	public bool IsTurning() {
 		return turning;
-	}
-
-	public bool IsAccelerating() {
-		return accelerating;
 	}
 
 	public bool IsDecelerating() {

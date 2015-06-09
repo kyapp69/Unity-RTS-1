@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
 public class ShipMovement : MonoBehaviour {
 	public float maxSpeed = 5f;

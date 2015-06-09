@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TurretController : MonoBehaviour {
 	public float rightRotation = 135f;
@@ -12,17 +13,22 @@ public class TurretController : MonoBehaviour {
 	public float reloadTime = 2.5f;
 	public GameObject shell;
 
+	public Text text1;
+	public Text text2;
+
 	bool turning;
 	Transform transform;
 	float rotation;
 	Transform gunBase;
-	float reloadTimer; //also used as the recoil timer
+	float reloadTimer;
 	Transform gun;
 	float firePoint;
+	Transform target;
 	// Use this for initialization
 	void Start () {
 		turning = false;
 		transform = GetComponent<Transform> ();
+		target = null;
 		rotation = 0;
 		if (turretType == "TurretLvl1") {
 			gunBase = transform.Find("BarrelLvl1Base").GetComponent<Transform>();
@@ -37,6 +43,28 @@ public class TurretController : MonoBehaviour {
 		reloadTimer += Time.deltaTime;
 		Vector3 angles = transform.eulerAngles;
 		Vector3 gunAngle = gunBase.eulerAngles;
+
+		//find angle to target
+		if (target) {
+			Vector3 targetHeading = target.position - transform.position;
+			float targetDistance = targetHeading.magnitude;
+			Vector3 targetDirection = targetHeading / targetDistance;
+
+			text1.text = "Gun direction: " + gunAngle.ToString();
+			text2.text = "Target direction: " + targetDirection.ToString();
+		}
+
+
+
+		/*
+		float angle = Mathf.Atan2 (localTarget.x, localTarget.z) * Mathf.Rad2Deg;
+		if (speed > .5f){
+			Vector3 eulerAngleVelocity = new Vector3 (0, angle, 0);
+			Quaternion deltaRotation = Quaternion.Euler (eulerAngleVelocity * turnSpeed * Time.deltaTime);
+			rigidbody.MoveRotation (rigidbody.rotation * deltaRotation);
+		}
+		*/
+
 		if (Input.GetKey (KeyCode.RightArrow) && (angles.y < rightRotation || angles.y > leftRotation - 1f)) {
 			transform.eulerAngles = new Vector3(0, angles.y + turnRate, 0);
 		}
@@ -51,11 +79,17 @@ public class TurretController : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.Space) && reloadTimer >= reloadTime) {
 			Fire ();
+			reloadTimer = 0f;
 		}
 	}
 
 	void Fire() {
-		Vector3 gunAngle = gun.eulerAngles;
-		Instantiate(shell, new Vector3(gun.position.x, gun.position.y, gun.position.z + firePoint), Quaternion.Euler(gunAngle.x, gunAngle.z, gunAngle.y));
+		//play fire animation and effects
+		Instantiate (shell, new Vector3 (gun.position.x, gun.position.y, gun.position.z), gun.rotation);//Quaternion.Euler(gunAngle.x, gunAngle.z, gunAngle.y));
+	}
+
+	//preconditions - assume the target is correct type of target, ships for gun turrets, aircraft for aa turrets, etc.
+	public void SetTarget(Transform t){
+		target = t;
 	}
 }

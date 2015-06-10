@@ -5,13 +5,14 @@ using UnityEngine.UI;
 public class TurretController : MonoBehaviour {
 	public float rightRotation = 135f;
 	public float leftRotation = 225f;
-	public float elevMax = 320f;
+	public float elevMax = 315f;
 	public float elevMin = 2f; 
 	public float turnRate = 0.5f;
 	public float elevRate = 0.5f;
 	public string turretType = "TurretLvl1";
 	public float reloadTime = 2.5f;
 	public GameObject shell;
+	public float shellVelocity = 15f;
 
 	public Text text1;
 	public Text text2;
@@ -24,6 +25,7 @@ public class TurretController : MonoBehaviour {
 	Transform gun;
 	float firePoint;
 	Transform target;
+	float maxRange;
 	// Use this for initialization
 	void Start () {
 		turning = false;
@@ -36,23 +38,38 @@ public class TurretController : MonoBehaviour {
 			firePoint = 0.2f;
 		}
 		reloadTimer = 0f;
+		maxRange = (shellVelocity * shellVelocity) / 9.81f; 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		reloadTimer += Time.deltaTime;
-		Vector3 angles = transform.eulerAngles;
-		Vector3 gunAngle = gunBase.eulerAngles;
+		Vector3 angles = transform.localEulerAngles;
+		Vector3 gunAngle = gunBase.localEulerAngles;
+		Vector3 turretFacing = transform.forward;
 
-		text1.text = "Gun direction: " + gunAngle.ToString();
+		text1.text = "Gun direction: " + turretFacing;
 
 		//find angle to target
 		if (target) {
 			Vector3 targetHeading = target.position - transform.position;
 			float targetDistance = targetHeading.magnitude;
-			Vector3 targetDirection = targetHeading / targetDistance;
+			Vector3 targetDirection = transform.InverseTransformPoint(target.position);
 
 			text2.text = "Target direction: " + targetDirection.ToString();
+
+			//Turn turret to face target
+			if (targetDirection.x < -0.1  && (angles.y > leftRotation || angles.y < rightRotation + 1f)){
+				//turn left
+				transform.localEulerAngles = new Vector3(0, angles.y - turnRate, 0);
+			} else if (targetDirection.x > 0.1 && (angles.y < rightRotation || angles.y > leftRotation - 1f)) {
+				//turn right
+				transform.localEulerAngles = new Vector3(0, angles.y + turnRate, 0);
+			}
+
+			//angle gun to firing angle
+			float desiredAngle = (1/2) * Mathf.Asin((9.81f * targetDistance)/(shellVelocity * shellVelocity));
+			text2.text = "Target Distance: " + targetDistance + " Desired Angle=" + desiredAngle;
 		}
 
 
@@ -67,16 +84,16 @@ public class TurretController : MonoBehaviour {
 		*/
 
 		if (Input.GetKey (KeyCode.RightArrow) && (angles.y < rightRotation || angles.y > leftRotation - 1f)) {
-			transform.eulerAngles = new Vector3(0, angles.y + turnRate, 0);
+			transform.localEulerAngles = new Vector3(0, angles.y + turnRate, 0);
 		}
 		if (Input.GetKey (KeyCode.LeftArrow) && (angles.y > leftRotation || angles.y < rightRotation + 1f)) {
-			transform.eulerAngles = new Vector3(0, angles.y - turnRate, 0);
+			transform.localEulerAngles = new Vector3(0, angles.y - turnRate, 0);
 		}
 		if (Input.GetKey (KeyCode.UpArrow) && (gunAngle.x > elevMax || gunAngle.x < elevMin + 1f)) {
-			gunBase.eulerAngles = new Vector3(gunAngle.x - elevRate, angles.y, 0);
+			gunBase.localEulerAngles = new Vector3(gunAngle.x - elevRate, 0, 0);
 		}
 		if (Input.GetKey (KeyCode.DownArrow) && (gunAngle.x < elevMin || gunAngle.x > elevMax - 1f)) {
-			gunBase.eulerAngles = new Vector3(gunAngle.x + elevRate, angles.y, 0);
+			gunBase.localEulerAngles = new Vector3(gunAngle.x + elevRate, 0, 0);
 		}
 		if (Input.GetKey (KeyCode.Space) && reloadTimer >= reloadTime) {
 			Fire ();

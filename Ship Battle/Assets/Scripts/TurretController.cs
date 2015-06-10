@@ -44,13 +44,14 @@ public class TurretController : MonoBehaviour {
 		Vector3 angles = transform.eulerAngles;
 		Vector3 gunAngle = gunBase.eulerAngles;
 
+		text1.text = "Gun direction: " + gunAngle.ToString();
+
 		//find angle to target
 		if (target) {
 			Vector3 targetHeading = target.position - transform.position;
 			float targetDistance = targetHeading.magnitude;
 			Vector3 targetDirection = targetHeading / targetDistance;
 
-			text1.text = "Gun direction: " + gunAngle.ToString();
 			text2.text = "Target direction: " + targetDirection.ToString();
 		}
 
@@ -90,6 +91,7 @@ public class TurretController : MonoBehaviour {
 
 	//preconditions - assume the target is correct type of target, ships for gun turrets, aircraft for aa turrets, etc.
 	public void SetTarget(Transform t){
+		Debug.Log ("TurretController: SetTarget: target=" + t.ToString(), this.gameObject);
 		target = t;
 	}
 }

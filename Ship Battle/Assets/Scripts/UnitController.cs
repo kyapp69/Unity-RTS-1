@@ -2,16 +2,20 @@
 using System.Collections;
 
 public class UnitController : MonoBehaviour {
-	public int hitpoints = 100;
+	public int maxHitpoints = 100;
 	public int team = 1;
-	public string u_name = "Frigate";
+	public string u_name = "Frigate 1";
+	public string shipClass = "Frigate";
+	public int shipLvl = 1;
 
+	int hitPoints;
 	SpriteRenderer selectionBox;
 	bool selected;
 	Player player;
 	ShipMovement mover;
 	// Use this for initialization
 	void Start () {
+		hitPoints = maxHitpoints;
 		selectionBox = GetComponentInChildren<SpriteRenderer> ();
 		selected = false;
 		player = GameObject.Find ("Player " + team).GetComponent<Player>();
@@ -26,16 +30,18 @@ public class UnitController : MonoBehaviour {
 	}
 
 	void CheckSelectionBox() {
-		if (GetComponentInChildren<Renderer> ().isVisible && Input.GetMouseButtonUp (0) && player.GetSelector().selecting && team == 1 && Input.mousePosition.y > player.GetSelector().mouseYLowerBound) {
-			Vector3 camPos = Camera.main.WorldToScreenPoint (transform.position);
-			camPos.y = UnitSelector.InvertMouseY (camPos.y);
-			bool s;
-			if (player.GetSelector().selection.width > 0 && player.GetSelector().selection.height > 0) {
-				s = player.GetSelector().selection.Contains (camPos);
-			} else {
-				s = new Rect (Input.mousePosition.x, UnitSelector.InvertMouseY (Input.mousePosition.y), -player.GetSelector().selection.width, -player.GetSelector().selection.height).Contains (camPos);
+		if (team == 1) {
+			if (GetComponentInChildren<Renderer> ().isVisible && Input.GetMouseButtonUp (0) && player.GetSelector ().selecting && Input.mousePosition.y > player.GetSelector ().mouseYLowerBound) {
+				Vector3 camPos = Camera.main.WorldToScreenPoint (transform.position);
+				camPos.y = UnitSelector.InvertMouseY (camPos.y);
+				bool s;
+				if (player.GetSelector ().selection.width > 0 && player.GetSelector ().selection.height > 0) {
+					s = player.GetSelector ().selection.Contains (camPos);
+				} else {
+					s = new Rect (Input.mousePosition.x, UnitSelector.InvertMouseY (Input.mousePosition.y), -player.GetSelector ().selection.width, -player.GetSelector ().selection.height).Contains (camPos);
+				}
+				SetSelected (s);
 			}
-			SetSelected (s);
 		}
 	}
 
